@@ -27,8 +27,6 @@ export default () => {
     Device_class = "body-mobile"
   }
 
-  console.log(Device_class);
-
   return (
     <div className="bg-red">
       <Loader />

@@ -4,11 +4,11 @@ import $ from 'jquery';
 
 //CSS
 
-import SurveyPage from '../../components/Survey';
+import Text_Input from '../../components/Survey/text_input.js';
 
 //import { SubmitIssue } from '../../actions/issue';
 
-class Survey extends Component {
+class Text_Input extends Component {
 
 //////////////////////////////////////////////////
 
@@ -26,97 +26,18 @@ class Survey extends Component {
     this.goHome = this.goHome.bind(this)
   }
 
-  handleSubmit(e){
-
-    e.preventDefault();
-
-    const reloaddata = document.getElementById('reloaddata')
-    reloaddata.classList.remove('fadeOut')
-
-    const myForm = document.getElementById('IssueForm')
-    const formData = new FormData(myForm)
-
-    this.props.onSubmitForm(formData)
-
-  }
-
-  validate(){
-
-    //document.getElementsByName('subject')
-
-
-  }
-
-  goHome(){
-    location.href = "/"
-  }
-
-  onInputChange(e){
-
-    e.preventDefault();
-
-    const element = document.getElementById('file_name')
-
-    const file = document.getElementById('file').files[0].name
-
-    element.value = file
-
-  }
-
-  removeReloaddata(){
-
-    const reloaddata = document.getElementById('reloaddata')
-
-    setTimeout(() => {
-      reloaddata.classList.add('fadeOut');
-    }, 1000);
-
-  }
-
-  componentWillUnmount() {
-      window.removeEventListener("beforeunload", this.onUnload)
-  }
-
-/////////////////////////////////////////////////
-
-  componentDidMount() {
-      //this.props.onloadclient()
-      window.addEventListener("beforeunload", this.onUnload)
-      //$('#dataTable').DataTable()
-  }
-
-  componentDidUpdate(){
-
-    const actionstatus = this.props.issue.status
-
-    if(actionstatus != 'new'){
-      this.removeReloaddata()
-    }
-
-    if(actionstatus === 'success'){
-
-      setTimeout(() => {
-        //$('#Modal').modal('toggle')
-        $('#Modal').modal({backdrop: 'static', keyboard: false})
-      }, 1000);
-
-    }else if(actionstatus === 'error'){
-
-
-    }else{
-
-    }
-
-  }
 
   render() {
 
     return (
-      <SurveyPage />
-        //clients={this.props.client}
-        //putfunction={this.loadclient}
-        //createNew={this.createNew}
-      //>
+      <Text_Input
+          Name=""
+          Placeholder=""
+          IconName=""
+          ValueType=""
+          DefaultValue=""
+        />
+
     )
   }
 }
@@ -134,5 +55,5 @@ const mapDispatchtoProps = (dispatch)=> ({
 
 })
 
-const SurveyWithConnect = connect(mapStatetoProps,mapDispatchtoProps)(Survey)
-export default SurveyWithConnect
+const Text_InputWithConnect = connect(mapStatetoProps,mapDispatchtoProps)(Text_Input)
+export default Text_InputWithConnect
