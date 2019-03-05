@@ -10,6 +10,8 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom'
 import { browserHistory } from 'react-router'
 
+import './i18n'
+
 //import './assets/styles/customs/master.scss';
 import './assets/register_template/css/demo.css';
 import './assets/register_template/css/sky-forms.css';

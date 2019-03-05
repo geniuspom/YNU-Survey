@@ -1,0 +1,17 @@
+{
+  "title": "หัวข้อ",
+  "first_name": "ชื่อ",
+  "last_name": "นามสกุล",
+  "age": "อายุ",
+  "gender": "เพศ",
+  "university": "มหาวิทยาลัย",
+  "faculty": "คณะ",
+  "major": "วิชาเอก",
+  "Year_of_college": "ระดับชั้นปี",
+  "English_Proficiency": "ความสามารถmkภาษาอังกฤษ",
+  "mobile": "โทรศัพท์",
+  "line_id": "Line_ID",
+  "email": "อีเมล",
+  "email_confirmation": "ยืนยันอีเมล",
+  "submit": "บันทึก"
+}

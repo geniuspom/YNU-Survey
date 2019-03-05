@@ -1,0 +1,17 @@
+{
+  "title": "Title",
+  "first_name": "First name",
+  "last_name": "Last name",
+  "age": "Age",
+  "gender": "Gender",
+  "university": "University",
+  "faculty": "Faculty",
+  "major": "Major",
+  "Year_of_college": "Year of college",
+  "English_Proficiency": "English Proficiency",
+  "mobile": "Mobile",
+  "line_id": "Line_ID",
+  "email": "Email",
+  "email_confirmation": "Email Confirmation",
+  "submit": "Submit"
+}

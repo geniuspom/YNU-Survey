@@ -2,6 +2,8 @@ const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
   devServer: {
     historyApiFallback: true,
@@ -60,5 +62,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new CopyWebpackPlugin([
+            {from:'src/locales',to:'locales'}
+    ]),
   ],
 }

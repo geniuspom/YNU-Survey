@@ -1,37 +1,23 @@
-import React, { Component, Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-
+import React, { Component } from 'react';
+//import '../../../assets/styles/index.scss';
+//import $ from 'jquery';
+//import { Link , NavLink } from 'react-router';
 import Site_Logo from'../../assets/register_template/image/SEAC logo.png';
+//import ClientPage from './client'
 
-function Page(data) {
-  const { t, i18n } = useTranslation();
+import { withTranslation } from 'react-i18next';
 
-  const changeLanguage = lng => {
-    i18n.changeLanguage(lng);
-  };
-
-  console.log(data);
-
-  const textStyle = {
-    padding:'0 0 10px 0',
-    color: '#fff',
-    cursor: 'pointer',
-  };
-
-  return (
+const SurveyPage = ({
+  handleSubmit, onInputChange, category, severity_level,
+}) => (
     <div>
-        <div className="text-center" style={textStyle}>
-          <a className="" onClick={() => changeLanguage('th')}>ภาษาไทย</a>
-          &nbsp;|&nbsp;
-          <a className="" onClick={() => changeLanguage('en')}>English</a>
-        </div>
-      <form className="sky-form" role="form" method="POST" >
+      <form className="sky-form" role="form" method="POST" action="{{ url('cee_register') }}">
         <header>
           <div className="text-center">
             <img src={Site_Logo} width="150px"/>
           </div>
           <div className="text-center">
-            {t('title')}
+            
           </div>
         </header>
 
@@ -48,13 +34,15 @@ function Page(data) {
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-user"></i>
-                <input name="first_name" placeholder={t('first_name')} type="text" />
+                <input name="first_name" placeholder="First name" type="text" value="" />
+
               </label>
             </section>
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-user"></i>
-                <input name="last_name" placeholder={t('last_name')} type="text" />
+                <input name="last_name" placeholder="Last name" type="text" value="" />
+
               </label>
             </section>
           </div>
@@ -64,7 +52,7 @@ function Page(data) {
             <section className="col col-6">
               <label className="select">
                 <select name="age">
-                  <option value="0" >{t('age')}</option>
+                  <option value="0" >Age</option>
                   <option value="15" >15</option>
                   <option value="16" >16</option>
                 </select>
@@ -75,7 +63,7 @@ function Page(data) {
             <section className="col col-6">
               <label className="select">
                 <select name="gender">
-                  <option value="0" >{t('gender')}</option>
+                  <option value="0" >Gender</option>
                   <option value="1" >Male</option>
                   <option value="2" >Female</option>
                 </select>
@@ -91,27 +79,28 @@ function Page(data) {
             <section className="col col-12">
               <label className="input">
                 <i className="icon-prepend icon-university"></i>
-                <input name="university" placeholder={t('university')} type="text" />
+                <input name="university" placeholder="University" type="text" value="" />
+
               </label>
             </section>
           </div>
-
           <div className="row">
             <section className="col col-6">
               <label className="input">
-              <input name="faculty" placeholder={t('faculty')} type="text" />
+              <input name="faculty" placeholder="Faculty" type="text" value="" />
+
               </label>
             </section>
             <section className="col col-6">
               <label className="input">
-              <input name="major" placeholder={t('major')} type="text" />
+              <input name="major" placeholder="Major" type="text" value="" />
 
               </label>
             </section>
             <section className="col col-6">
               <label className="select">
                 <select name="Year_of_college">
-                  <option value="0" >{t('Year_of_college')}</option>
+                  <option value="0" >Year of college</option>
                   <option value="1" >Freshman (ปีหนึ่ง)</option>
                   <option value="2" >Sophomore (ปีสอง)</option>
                   <option value="3" >Junior (ปีสาม)</option>
@@ -124,7 +113,7 @@ function Page(data) {
             <section className="col col-6">
               <label className="select">
                 <select name="English_Proficiency">
-                  <option value="0" >{t('English_Proficiency')}</option>
+                  <option value="0" >English Proficiency</option>
                   <option value="1" >Fair</option>
                   <option value="2" >Good</option>
                   <option value="3" >Excellent</option>
@@ -142,14 +131,14 @@ function Page(data) {
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-mobile-phone"></i>
-                <input name="mobile" placeholder={t('mobile')} type="tel" />
+                <input name="mobile" placeholder="Mobile Phone" type="tel" value="" />
 
               </label>
             </section>
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-phone"></i>
-                <input name="line_id" placeholder={t('line_id')} type="text" />
+                <input name="line_id" placeholder="Line ID" type="text" value="" />
 
               </label>
             </section>
@@ -159,7 +148,7 @@ function Page(data) {
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-envelope-alt"></i>
-                <input name="email" placeholder={t('email')} type="email" />
+                <input name="email" placeholder="E-mail" type="email" value="" />
                 <b className="tooltip tooltip-bottom-right">Needed to verify your account</b>
 
               </label>
@@ -167,7 +156,7 @@ function Page(data) {
             <section className="col col-6">
               <label className="input" >
                 <i className="icon-prepend icon-envelope-alt"></i>
-                <input name="email_confirmation" placeholder={t('email_confirmation')} type="email" />
+                <input name="email_confirmation" placeholder="Confirm E-mail" type="email" value="" />
                 <b className="tooltip tooltip-bottom-right">Needed to verify your account</b>
 
               </label>
@@ -177,30 +166,10 @@ function Page(data) {
         </fieldset>
 
         <footer>
-          <button type="submit" className="button">{t('submit')}</button>
+          <button type="submit" className="button">Submit</button>
         </footer>
       </form>
     </div>
-  );
-}
+  )
 
-// loading component for suspence fallback
-const Loader = () => (
-  <div className="App">
-    <div>loading...</div>
-  </div>
-);
-
-
-const SurveyPage = ({
-  data
-}) => {
-
-  return (
-    <Suspense fallback={<Loader />}>
-      <Page data={data} fun="fun" />
-    </Suspense>
-  );
-}
-
-export default SurveyPage
+export default SurveyPage;

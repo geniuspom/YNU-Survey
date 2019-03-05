@@ -19,6 +19,7 @@ export default class App extends Component {
   render() {
     const { initialState } = this.props
     const { store, persistor } = configureStore(history, initialState)
+
     return (
         <Provider store={store} key='provider'>
         <PersistGate loading={null} persistor={persistor}>
