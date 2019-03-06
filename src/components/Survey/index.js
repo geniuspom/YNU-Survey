@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import Site_Logo from'../../assets/register_template/image/SEAC logo.png';
 
+import Year_values from '../../json/List.js';
+
 function Page(data) {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
-
-  console.log(data);
 
   const textStyle = {
     padding:'0 0 10px 0',
@@ -44,116 +44,6 @@ function Page(data) {
         </fieldset>
 
         <fieldset>
-          <div className="row">
-            <section className="col col-6">
-              <label className="input">
-                <i className="icon-prepend icon-user"></i>
-                <input name="first_name" placeholder={t('first_name')} type="text" />
-              </label>
-            </section>
-            <section className="col col-6">
-              <label className="input">
-                <i className="icon-prepend icon-user"></i>
-                <input name="last_name" placeholder={t('last_name')} type="text" />
-              </label>
-            </section>
-          </div>
-
-          <div className="row">
-
-            <section className="col col-6">
-              <label className="select">
-                <select name="age">
-                  <option value="0" >{t('age')}</option>
-                  <option value="15" >15</option>
-                  <option value="16" >16</option>
-                </select>
-
-                <i></i>
-              </label>
-            </section>
-            <section className="col col-6">
-              <label className="select">
-                <select name="gender">
-                  <option value="0" >{t('gender')}</option>
-                  <option value="1" >Male</option>
-                  <option value="2" >Female</option>
-                </select>
-
-                <i></i>
-              </label>
-            </section>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <div className="row">
-            <section className="col col-12">
-              <label className="input">
-                <i className="icon-prepend icon-university"></i>
-                <input name="university" placeholder={t('university')} type="text" />
-              </label>
-            </section>
-          </div>
-
-          <div className="row">
-            <section className="col col-6">
-              <label className="input">
-              <input name="faculty" placeholder={t('faculty')} type="text" />
-              </label>
-            </section>
-            <section className="col col-6">
-              <label className="input">
-              <input name="major" placeholder={t('major')} type="text" />
-
-              </label>
-            </section>
-            <section className="col col-6">
-              <label className="select">
-                <select name="Year_of_college">
-                  <option value="0" >{t('Year_of_college')}</option>
-                  <option value="1" >Freshman (ปีหนึ่ง)</option>
-                  <option value="2" >Sophomore (ปีสอง)</option>
-                  <option value="3" >Junior (ปีสาม)</option>
-                  <option value="4" >Senior (ปีสี่)</option>
-                </select>
-
-                <i></i>
-              </label>
-            </section>
-            <section className="col col-6">
-              <label className="select">
-                <select name="English_Proficiency">
-                  <option value="0" >{t('English_Proficiency')}</option>
-                  <option value="1" >Fair</option>
-                  <option value="2" >Good</option>
-                  <option value="3" >Excellent</option>
-                </select>
-
-                <i></i>
-              </label>
-            </section>
-          </div>
-        </fieldset>
-
-        <fieldset>
-
-          <div className="row">
-            <section className="col col-6">
-              <label className="input">
-                <i className="icon-prepend icon-mobile-phone"></i>
-                <input name="mobile" placeholder={t('mobile')} type="tel" />
-
-              </label>
-            </section>
-            <section className="col col-6">
-              <label className="input">
-                <i className="icon-prepend icon-phone"></i>
-                <input name="line_id" placeholder={t('line_id')} type="text" />
-
-              </label>
-            </section>
-          </div>
 
           <div className="row">
             <section className="col col-6">
@@ -174,6 +64,143 @@ function Page(data) {
             </section>
           </div>
 
+          <div className="row">
+            <section className="col col-6">
+              <label className="input">
+                <i className="icon-prepend icon-user"></i>
+                <input name="first_name" placeholder={t('first_name')} type="text" />
+              </label>
+            </section>
+            <section className="col col-6">
+              <label className="input">
+                <i className="icon-prepend icon-user"></i>
+                <input name="last_name" placeholder={t('last_name')} type="text" />
+              </label>
+            </section>
+          </div>
+
+          <div className="row">
+
+            <section className="col col-6">
+              <label className="input">
+                <i className="icon-prepend icon-user"></i>
+                <input name="nick_name" placeholder={t('nick_name')} type="text" />
+              </label>
+            </section>
+
+            <section className="col col-6">
+              <label className="input">
+                <i className="icon-prepend icon-mobile-phone"></i>
+                <input name="mobile" placeholder={t('mobile')} type="tel" />
+
+              </label>
+            </section>
+
+          </div>
+
+          <div className="row">
+
+            <section className="col col-6">
+              <label className="select">
+                <select name="Birth_year">
+                  <option value="0" >{t('Birth_year')}</option>
+                  {
+                    Year_values.map((Year_value) => (
+                      <option key={Year_value.id} value={Year_value.id}>{Year_value.value}</option>
+                    ))
+                  }
+                </select>
+                <i></i>
+              </label>
+            </section>
+            <section className="col col-6">
+              <label className="select">
+                <select name="gender">
+                  <option value={t('gender.0')} >{t('gender.0')}</option>
+                  <option value={t('gender.1')} >{t('gender.1')}</option>
+                  <option value={t('gender.2')} >{t('gender.2')}</option>
+                </select>
+                <i></i>
+              </label>
+            </section>
+          </div>
+
+          <div className="row">
+
+            <section className="col col-12">
+              <label className="select">
+                <select name="marital_status">
+                  <option value={t('marital_status.0')} >{t('marital_status.0')}</option>
+                  <option value={t('marital_status.1')} >{t('marital_status.1')}</option>
+                  <option value={t('marital_status.2')} >{t('marital_status.2')}</option>
+                </select>
+
+                <i></i>
+              </label>
+            </section>
+
+          </div>
+          <div className="row">
+
+            <section className="col col-12">
+              <label className="input">
+                <i className="icon-prepend fa-home"></i>
+                <input name="province" placeholder={t('province')} type="tel" />
+
+              </label>
+            </section>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <div className="row">
+            <section className="col col-12">
+              <label className="input">
+                <i className="icon-prepend fa-suitcase"></i>
+                <input name="affiliation" placeholder={t('affiliation.0')} type="text" />
+              </label>
+            </section>
+          </div>
+
+          <div className="row">
+            <section className="col col-12">
+              <label className="input">
+                <input name="company" placeholder={t('company')} type="text" />
+              </label>
+            </section>
+          </div>
+
+          <div className="row">
+            <section className="col col-12">
+              <label className="input">
+                <input name="position" placeholder={t('position')} type="text" />
+              </label>
+            </section>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+
+          <div className="row">
+            <section className="col col-12">
+              <label className="label" >{t('what_learn_about')}</label>
+                <label className="textarea">
+  							<textarea rows="3" name="what_learn_about"></textarea>
+  						</label>
+            </section>
+          </div>
+
+          <div className="row">
+            <section className="col col-12">
+              <label className="label" >{t('where_about_ynu')}</label>
+                <label className="textarea">
+                <textarea rows="3" name="where_about_ynu"></textarea>
+              </label>
+            </section>
+          </div>
+
         </fieldset>
 
         <footer>
@@ -183,6 +210,28 @@ function Page(data) {
     </div>
   );
 }
+
+/*function Birth_year (){
+
+  const { t, i18n } = useTranslation();
+  //var data_value = <option value="0" >{t('Birth_year')}</option>
+  let data_values = []
+
+  for(let i = 1940; i <= 2490; i++){
+    data_values => i
+  }
+
+  const tifOptions = Object.keys(data_values).map(data_value =>
+    <option value={data_value}>{tifs[data_value]}</option>
+  )
+
+  return (
+    //<option value="0" >{t('Birth_year')}</option>
+    tifOptions
+  )
+
+}*/
+
 
 // loading component for suspence fallback
 const Loader = () => (
