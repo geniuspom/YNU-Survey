@@ -16,6 +16,8 @@ import './i18n'
 import './assets/register_template/css/demo.css';
 import './assets/register_template/css/sky-forms.css';
 import './assets/register_template/css/font-awesome/css/font-awesome.min.css';
+import './assets/register_template/css/sky-forms-red.css';
+
 
 const initialState = window.__INITIAL_STATE__
 

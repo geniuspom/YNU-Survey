@@ -17,6 +17,7 @@ class Survey extends Component {
     this.state = {
       category: 'Admin Function',
       severity_level: 'Feature Request',
+      value: 0,
     }
     //this.onUnload = this.onUnload.bind(this) // if you need to bind callback to this
     //this.createNew = this.createNew.bind(this)
@@ -24,7 +25,15 @@ class Survey extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     this.goHome = this.goHome.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
+
+  handleChange = event => {
+    let { value, min, max } = event.target;
+    value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+
+    this.setState({ value });
+  };
 
   handleSubmit(e){
 
@@ -112,7 +121,7 @@ class Survey extends Component {
   render() {
 
     return (
-      <SurveyPage data="test data"/>
+      <SurveyPage data="test data" handleChange={this.handleChange} value={this.state.value}/>
         //clients={this.props.client}
         //putfunction={this.loadclient}
         //createNew={this.createNew}

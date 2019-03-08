@@ -5,7 +5,11 @@ import Site_Logo from'../../assets/register_template/image/SEAC logo.png';
 
 import Year_values from '../../json/List.js';
 
-function Page(data) {
+import {Province} from '../../json/province.js';
+
+import Autocomplete from 'react-autocomplete'
+
+function Page(data, handleChange, value) {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = lng => {
@@ -17,6 +21,14 @@ function Page(data) {
     color: '#fff',
     cursor: 'pointer',
   };
+
+  let Full_Date = new Date();
+  let Min_Year = Full_Date.getFullYear() - 80;
+  let Max_Year = Full_Date.getFullYear() - 10;
+
+  let Province_List = Province(i18n.language)
+
+  console.log(Province_List);
 
   return (
     <div>
@@ -49,7 +61,7 @@ function Page(data) {
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-envelope-alt"></i>
-                <input name="email" placeholder={t('email')} type="email" />
+                <input name="email" placeholder={t('email')} type="email" required />
                 <b className="tooltip tooltip-bottom-right">Needed to verify your account</b>
 
               </label>
@@ -57,7 +69,7 @@ function Page(data) {
             <section className="col col-6">
               <label className="input" >
                 <i className="icon-prepend icon-envelope-alt"></i>
-                <input name="email_confirmation" placeholder={t('email_confirmation')} type="email" />
+                <input name="email_confirmation" placeholder={t('email_confirmation')} type="email" required />
                 <b className="tooltip tooltip-bottom-right">Needed to verify your account</b>
 
               </label>
@@ -68,13 +80,13 @@ function Page(data) {
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-user"></i>
-                <input name="first_name" placeholder={t('first_name')} type="text" />
+                <input name="first_name" placeholder={t('first_name')} type="text" required />
               </label>
             </section>
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-user"></i>
-                <input name="last_name" placeholder={t('last_name')} type="text" />
+                <input name="last_name" placeholder={t('last_name')} type="text" required />
               </label>
             </section>
           </div>
@@ -84,14 +96,14 @@ function Page(data) {
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-user"></i>
-                <input name="nick_name" placeholder={t('nick_name')} type="text" />
+                <input name="nick_name" placeholder={t('nick_name')} type="text" required />
               </label>
             </section>
 
             <section className="col col-6">
               <label className="input">
                 <i className="icon-prepend icon-mobile-phone"></i>
-                <input name="mobile" placeholder={t('mobile')} type="tel" />
+                <input name="mobile" placeholder={t('mobile')} type="tel" required />
 
               </label>
             </section>
@@ -99,19 +111,20 @@ function Page(data) {
           </div>
 
           <div className="row">
-
             <section className="col col-6">
-              <label className="select">
-                <select name="Birth_year">
-                  <option value="0" >{t('Birth_year')}</option>
-                  {
-                    Year_values.map((Year_value) => (
-                      <option key={Year_value.id} value={Year_value.id}>{Year_value.value}</option>
-                    ))
-                  }
-                </select>
-                <i></i>
-              </label>
+                <label className="input">
+                    <i className="icon-prepend fa-birthday-cake"></i>
+                      <input
+                        name="mobile"
+                        placeholder={t('Birth_year')}
+                        value={value}
+                        onChange={handleChange}
+                        type="number"
+                        min={Min_Year}
+                        max={Max_Year}
+                        required
+                        />
+                </label>
             </section>
             <section className="col col-6">
               <label className="select">
@@ -145,20 +158,41 @@ function Page(data) {
             <section className="col col-12">
               <label className="input">
                 <i className="icon-prepend fa-home"></i>
-                <input name="province" placeholder={t('province')} type="tel" />
-
+                <input name="province" placeholder={t('province')} type="tel" required />
               </label>
             </section>
           </div>
+
+          <Autocomplete
+            getItemValue={(item) => item.label}
+            items={Province_List}
+            renderItem={(item, isHighlighted) =>
+              <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                {item.label}
+              </div>
+            }
+            value={value}
+            onChange={(e) => value = e.target.value}
+            onSelect={(val) => value = val}
+          />
 
         </fieldset>
 
         <fieldset>
           <div className="row">
             <section className="col col-12">
-              <label className="input">
-                <i className="icon-prepend fa-suitcase"></i>
-                <input name="affiliation" placeholder={t('affiliation.0')} type="text" />
+              <label className="select">
+                <select name="affiliation">
+                  <option value={t('affiliation.0')} >{t('affiliation.0')}</option>
+                  <option value={t('affiliation.1')} >{t('affiliation.1')}</option>
+                  <option value={t('affiliation.2')} >{t('affiliation.2')}</option>
+                  <option value={t('affiliation.3')} >{t('affiliation.3')}</option>
+                  <option value={t('affiliation.4')} >{t('affiliation.4')}</option>
+                  <option value={t('affiliation.5')} >{t('affiliation.5')}</option>
+                  <option value={t('affiliation.6')} >{t('affiliation.6')}</option>
+                  <option value={t('affiliation.7')} >{t('affiliation.7')}</option>
+                </select>
+                <i></i>
               </label>
             </section>
           </div>
@@ -166,7 +200,7 @@ function Page(data) {
           <div className="row">
             <section className="col col-12">
               <label className="input">
-                <input name="company" placeholder={t('company')} type="text" />
+                <input name="company" placeholder={t('company')} type="text" required />
               </label>
             </section>
           </div>
@@ -174,7 +208,7 @@ function Page(data) {
           <div className="row">
             <section className="col col-12">
               <label className="input">
-                <input name="position" placeholder={t('position')} type="text" />
+                <input name="position" placeholder={t('position')} type="text" required />
               </label>
             </section>
           </div>
@@ -187,19 +221,38 @@ function Page(data) {
             <section className="col col-12">
               <label className="label" >{t('what_learn_about')}</label>
                 <label className="textarea">
-  							<textarea rows="3" name="what_learn_about"></textarea>
+  							<textarea rows="3" name="what_learn_about" required></textarea>
   						</label>
             </section>
           </div>
 
-          <div className="row">
-            <section className="col col-12">
-              <label className="label" >{t('where_about_ynu')}</label>
-                <label className="textarea">
-                <textarea rows="3" name="where_about_ynu"></textarea>
-              </label>
-            </section>
-          </div>
+          <section>
+            <label class="label">{t('where_about_ynu.0')}</label>
+            <div className="row">
+  							<div className="col col-4">
+  								<label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.1')}</label>
+  								<label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.4')}</label>
+                  <label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.7')}</label>
+  							</div>
+  							<div className="col col-4">
+  								<label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.2')}</label>
+  								<label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.5')}</label>
+  							</div>
+  							<div className="col col-4">
+  								<label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.3')}</label>
+  								<label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.6')}</label>
+  							</div>
+  					</div>
+            <div className="row">
+                <div className="col col-12">
+                  <label className="input">
+                    <input name="where_about_ynu_other" type="text"  />
+                  </label>
+                </div>
+            </div>
+          </section>
+
+
 
         </fieldset>
 
@@ -210,6 +263,18 @@ function Page(data) {
     </div>
   );
 }
+
+/*
+<select name="Birth_year">
+  <option value="0" >{t('Birth_year')}</option>
+  {
+    Year_values.map((Year_value) => (
+      <option key={Year_value.id} value={Year_value.id}>{Year_value.value}</option>
+    ))
+  }
+</select>
+*/
+
 
 /*function Birth_year (){
 
@@ -242,12 +307,12 @@ const Loader = () => (
 
 
 const SurveyPage = ({
-  data
+  data, handleChange, value
 }) => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <Page data={data} fun="fun" />
+      <Page data={data, handleChange, value} fun="fun" />
     </Suspense>
   );
 }

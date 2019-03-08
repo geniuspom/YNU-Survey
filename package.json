@@ -22,6 +22,7 @@
     "perfect-scrollbar": "^1.4.0",
     "popper.js": "^1.14.4",
     "react": "^16.4.2",
+    "react-autocomplete": "^1.8.1",
     "react-beforeunload": "^1.0.4",
     "react-day-picker": "^7.2.4",
     "react-dom": "^16.4.2",
