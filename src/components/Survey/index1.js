@@ -11,12 +11,11 @@ import Autocomplete from 'react-autocomplete'
 
 import AutocompleteContainer from '../../containers/Survey/AutocompleteContainer'
 
-function Page(data, {handleChange}, value) {
+function Page(data, handleChange, value) {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = lng => {
-    i18n.changeLanguage(lng)
-    let Province_List = Province('en')
+    i18n.changeLanguage(lng);
   };
 
   const textStyle = {
@@ -28,8 +27,6 @@ function Page(data, {handleChange}, value) {
   let Full_Date = new Date();
   let Min_Year = Full_Date.getFullYear() - 80;
   let Max_Year = Full_Date.getFullYear() - 10;
-
-  let Province_List = Province(i18n.language)
 
   //let Province_List = Province(i18n.language)
 
@@ -156,13 +153,22 @@ function Page(data, {handleChange}, value) {
             </section>
 
           </div>
+          <div className="row">
+
+            <section className="col col-12">
+              <label className="input">
+                <i className="icon-prepend fa-home"></i>
+                <input name="province" placeholder={t('province')} type="tel" required />
+              </label>
+            </section>
+          </div>
 
           <div className="row">
 
             <section className="col col-12">
               <label className="input">
 
-                <AutocompleteContainer List={Province_List} placeholder_value={t('province')}/>
+                <AutocompleteContainer lang={i18n.language} placeholder_value={t('province')}/>
 
               </label>
             </section>
@@ -220,7 +226,7 @@ function Page(data, {handleChange}, value) {
           </div>
 
           <section>
-            <label className="label">{t('where_about_ynu.0')}</label>
+            <label class="label">{t('where_about_ynu.0')}</label>
             <div className="row">
   							<div className="col col-4">
   								<label className="checkbox"><input type="checkbox" name="where_about_ynu" /><i></i>{t('where_about_ynu.1')}</label>
@@ -257,6 +263,39 @@ function Page(data, {handleChange}, value) {
   );
 }
 
+/*
+<select name="Birth_year">
+  <option value="0" >{t('Birth_year')}</option>
+  {
+    Year_values.map((Year_value) => (
+      <option key={Year_value.id} value={Year_value.id}>{Year_value.value}</option>
+    ))
+  }
+</select>
+*/
+
+
+/*function Birth_year (){
+
+  const { t, i18n } = useTranslation();
+  //var data_value = <option value="0" >{t('Birth_year')}</option>
+  let data_values = []
+
+  for(let i = 1940; i <= 2490; i++){
+    data_values => i
+  }
+
+  const tifOptions = Object.keys(data_values).map(data_value =>
+    <option value={data_value}>{tifs[data_value]}</option>
+  )
+
+  return (
+    //<option value="0" >{t('Birth_year')}</option>
+    tifOptions
+  )
+
+}*/
+
 
 // loading component for suspence fallback
 const Loader = () => (
@@ -272,7 +311,7 @@ const SurveyPage = ({
 
   return (
     <Suspense fallback={<Loader />}>
-      <Page data={data, {handleChange}, value} fun="fun" />
+      <Page data={data, handleChange, value} fun="fun" />
     </Suspense>
   );
 }

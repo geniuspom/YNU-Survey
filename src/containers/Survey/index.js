@@ -17,7 +17,7 @@ class Survey extends Component {
     this.state = {
       category: 'Admin Function',
       severity_level: 'Feature Request',
-      value: 0,
+      value: '',
     }
     //this.onUnload = this.onUnload.bind(this) // if you need to bind callback to this
     //this.createNew = this.createNew.bind(this)

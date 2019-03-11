@@ -4,15 +4,15 @@ function Province(lang) {
 
   if (lang == "th"){
     province_data = [
-        {"label" : "เชียงใหม่"},
-        {"label" : "เชียงราย"},
-        {"label" : "เพชรบุรี"}
-  ]
+			"เชียงใหม่",
+      "เชียงราย",
+      "เพชรบุรี",
+    ]
   }else{
     province_data = [
-        {"label" : "Amnat Charoen"},
-        {"label" : "Ang Thong"},
-        {"label" : "Bangkok"}
+      "Amnat Charoen",
+      "Ang Thong",
+      "Bangkok",
     ]
   }
 
